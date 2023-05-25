@@ -38,33 +38,37 @@ public class JogoController extends HttpServlet {
         
         
         try {
-        
+            JogoDAO dao = new JogoDAO();
+            
             if(request.getParameter("cod_mapa") == null) {
                 //Criando um novo objeto da classe Jogo com os valores recebidos
-                Jogo objJogo = new Jogo(
+                Jogo objJogo;
+                objJogo = new Jogo(
                         this.nome,
                         this.valor,
                         this.genero,
                         this.imagem,
-                        this.console,
-                );      
+                        this.console
+                );
 
-                    JogoDAO dao = new JogoDAO();
                     dao.insertJogo(objJogo);
-                    response.sendRedirect("lista.jsp");
+                    
             } else {
-                Jogo objJogo = new Jogo                       
+                Jogo objJogo = new Jogo(
+                        this.cod,
                         this.nome,          
                         this.valor,
                         this.genero,
                         this.imagem,
-                        this.console,
+                        this.console
                 );
                 
-                JogoDAO dao = new JogoDAO();
                 dao.updateJogo(objJogo);
-                response.sendRedirect("lista.jsp");
+                
             }
+            
+            response.sendRedirect("lista.jsp");
+            
         } catch(ClassNotFoundException | SQLException erro) {
             
             try (PrintWriter out = response.getWriter()) {

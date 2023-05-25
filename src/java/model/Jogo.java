@@ -17,6 +17,14 @@ public class Jogo {
         this.imagem = imagem;
         this.console = console;
     }
+    
+    public Jogo(String nome, double valor, String genero, String imagem, String console) {
+        this.nome = nome;
+        this.valor = valor;
+        this.genero = genero;
+        this.imagem = imagem;
+        this.console = console;
+    }
 
     public Jogo() {
     }
